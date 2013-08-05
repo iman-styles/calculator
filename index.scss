@@ -7,8 +7,11 @@
   width: 180px;
 
   &.is-fixed {
-    left: 950px;
+    left: 50%;
+    margin-left: 260px;
     top: 60px;
+    z-index: 1;
+    box-shadow: 0 0 2px 1px rgba(black, 0.2)
   }
 
   .pricing-scale__items {
