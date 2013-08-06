@@ -52,7 +52,7 @@
 
     &.is-selected {
       background: darken($purple-light, 5);
-      box-shadow: inset 0 0 4px rgba(#000, 0.3);
+      box-shadow: inset 0 1px 3px rgba(#000, 0.2);
 
       .pricing-scale__item-title {
         color: #FED500;
@@ -87,20 +87,25 @@
   .pointerevents.cssgradients & .select {
 
     select {
-      background: lighten($purple-light, 5);
-      border: 1px solid $purple;
-      box-shadow: 0 1px 0 0 lighten($purple-light, 20) inset,  0 1px 0 rgba(#000, 0.05);
+      background: darken($purple-light, 5);
+      border: 1px solid #322C64;
+      box-shadow: none;
       color: #fff;
     }
 
     &:before {
       @include show-pseudo-element;
-      background: lighten($purple-light, 5);
+      background: darken($purple-light, 5);
     }
 
     &:after {
       @include show-pseudo-element;
       @include triangle('bottom', 13px, 7px, #fff);
     }
+  }
+
+  .pricing-scale > label,
+  .pricing-frequency > label {
+    margin-bottom: 5px;
   }
 }
