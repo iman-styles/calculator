@@ -83,6 +83,7 @@
     margin-top: 0;
   }
 
+  // Select box
   .select {
 
     select {
@@ -92,14 +93,16 @@
       color: #fff;
     }
 
-    &:before {
-      @include show-pseudo-element;
-      background: darken($purple-light, 5);
-    }
+    .pointerevents & {
+      &:before {
+        @include show-pseudo-element;
+        background: darken($purple-light, 5);
+      }
 
-    &:after {
-      @include show-pseudo-element;
-      @include triangle('bottom', 13px, 7px, #fff);
+      &:after {
+        @include show-pseudo-element;
+        @include triangle('bottom', 13px, 7px, #fff);
+      }
     }
   }
 
