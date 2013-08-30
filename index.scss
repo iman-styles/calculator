@@ -15,6 +15,16 @@
     z-index: 1;
   }
 
+    // IE8
+  .no-csstransforms & {
+    border: 1px solid transparent;
+  }
+
+  .no-csstransforms &.is-fixed {
+    border-color: #3c397a;
+    margin-left: 258px;
+  }
+
   .pricing-scale__items {
     background: lighten($purple-light, 5);
     border-radius: 2px;
