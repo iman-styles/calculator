@@ -27,12 +27,8 @@
 
   // set min-height to prevent xhr request jolting cal height on response
   .pricing-product-price {
+    margin-top: 5px;
     min-height: 40px;
-  }
-
-  .pricing-product-origin-price {
-    color: #a3a1c6;
-    margin-bottom: 5px;
   }
 
   .pricing-scale__items {
