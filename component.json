@@ -1,10 +1,10 @@
 {
   "name": "calculator",
-  "main": "index.scss",
-  "version": "0.0.5",
+  "main": "index.css",
+  "version": "0.1.0",
   "dependencies": {},
   "styles": [
-    "index.scss"
+    "index.css"
   ],
   "repo": "https://raw.github.com/iman-styles/calculator"
 }
