@@ -1,144 +1,186 @@
 .im-pricing-calculator {
-  background: rgba(71, 66, 140, 0.9);
+  background-color: #494e90;
+  background: rgba($purple-light, 0.95);
   border-radius: 2px;
   color: #fff;
   float: right;
-  font-family: "Roboto",sans-serif;
+  font-family: $font-family-roboto;
   padding: 20px;
   width: 180px;
-}
-.im-pricing-calculator.is-fixed {
-  box-shadow: 0 0 2px 1px rgba(black, 0.2);
-  left: 50%;
-  margin-left: 260px;
-  top: 60px;
-  z-index: 1;
-}
-
-/* IE8 */
-.no-csstransforms .im-pricing-calculator {
-  border: 1px solid transparent;
-}
-
-.no-csstransforms .im-pricing-calculator.is-fixed {
-  border-color: #3c397a;
-  margin-left: 258px;
-}
-
-// set min-height to prevent xhr request jolting cal height on response
-.im-pricing-calculator .pricing-product-price {
-  margin-top: 5px;
-  min-height: 40px;
-}
-
-.im-pricing-calculator .pricing-scale__items {
-  background: #504a9d;
-  border-radius: 2px;
-  border: 1px solid #2f276c;
-  margin: 2px -1px 0;
-  overflow: hidden;
-}
-
-.boxsizing .im-pricing-calculator .pricing-scale__item {
-  box-shadow: inset 0 1px 0 0 #7b76be, inset 0 0 3px rgba(#fff, 0.3);
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  width: 33.3%;
-}
-
-.im-pricing-calculator .pricing-scale__item {
-  cursor: pointer;
-  float: left;
-  font-size: 21px;
-  padding: 15px 0;
-  position: relative;
-  text-align: center;
-  text-shadow: 0 -2px 2px rgba(#000, 0.3);
-  width: 60px;
-}
-.im-pricing-calculator .pricing-scale__item:after {
-  content: "";
-  display: block;
-  background: #2f276c;
-  bottom: 0;
-  left: 0;
   position: absolute;
   top: 0;
-  width: 1px;
+  right: 0;
+
+  &.is-fixed {
+    box-shadow: 0 0 2px 1px rgba(black, 0.2);
+    left: 50%;
+    margin-left: 260px;
+    top: 60px;
+    z-index: 1;
+  }
+  // Stop calculator becoming fixed on touch devices to stop bug with iOS and droids
+  .touch &.is-fixed {
+    position: absolute !important;
+    left: auto;
+    top: auto;
+    margin-left: 0;
+  }
+
+    // IE8
+  .no-csstransforms & {
+    border: 1px solid transparent;
+  }
+
+  .no-csstransforms &.is-fixed {
+    border-color: #3c397a;
+    margin-left: 258px;
+  }
+
+  // set min-height to prevent xhr request jolting cal height on response
+  .pricing-product-price {
+    margin-top: 5px;
+    min-height: 40px;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .pricing-scale__items {
+    background: lighten($purple-light, 5);
+    border-radius: 2px;
+    border: 1px solid lighten($purple, 6);
+    margin: 2px -1px 0;
+    overflow: hidden;
+  }
+  .pricing-product-price_wrapper {
+    border-bottom: 1px solid #393570;
+  }
+  .boxsizing & .pricing-scale__item {
+    box-shadow: inset 0 1px 0 0 lighten($purple-light, 20), inset 0 0 3px rgba(#fff, 0.3);
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 33.3%;
+  }
+
+  .pricing-scale__item {
+    cursor: pointer;
+    float: left;
+    font-size: 21px;
+    padding: 15px 0;
+    position: relative;
+    text-align: center;
+    text-shadow: 0 -2px 2px rgba(#000, 0.3);
+    width: 60px;
+
+    &:after {
+      @include show-pseudo-element;
+      background: lighten($purple, 6);
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1px;
+    }
+
+    &:hover {
+      background: lighten($purple-light, 10);
+    }
+
+    &.is-selected {
+      background: darken($purple-light, 5);
+      box-shadow: inset 0 1px 3px rgba(#000, 0.2);
+
+      .pricing-scale__item-title {
+        color: #FED500;
+      }
+    }
+  }
+
+  .pricing-scale__item:first-child:after {
+    display: none;
+  }
+
+  .pricing-scale__item-title {
+    color: #fff;
+    display: block;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 21px;
+  }
+
+  .pricing-scale__item input {
+    left: -9999px;
+    position: absolute;
+    top: -9999px;
+  }
+
+  .form__actions {
+    background: none;
+    margin-top: 0;
+    padding: 20px;
+  }
+
+  // Select box
+  .select {
+
+    select {
+      background: darken($purple-light, 5);
+      border: 1px solid #322C64;
+      box-shadow: none;
+      color: #fff;
+      padding: 3px 10px 3px 10px;
+    }
+
+    .pointerevents & {
+      &:before {
+        @include show-pseudo-element;
+        background: darken($purple-light, 5);
+      }
+
+      &:after {
+        background-position: 0 0;
+      background-repeat: no-repeat;
+      background-image: nav-image-url('icon-arrow-down-white-10.png');
+      background-image: nav-image-url('icon-arrow-down-white-10.svg'), none;
+      border: none;
+      content: "";
+      display: block;
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      width: 10px;
+      height: 6px;
+      -webkit-transform: translateY(-40%);
+      -moz-transform: translateY(-40%);
+      transform: translateY(-40%);
+      }
+    }
+  }
+
+  // IE8
+  .no-csstransforms & .btn--primary {
+    border: 1px solid #7d610f;
+    border-bottom: 4px solid #7d610f;
+  }
 }
 
-.im-pricing-calculator .pricing-scale__item:hover {
-  background: #5953ae;
+.pricing-increase-notice {
+  background-color: #464180;
+  background-color: rgba(0,0,0,0.1);
+  margin: 15px -10px 0px;
+  color: rgba(255,255,255,0.8);
+  padding: 10px;
+  font-size: 14px;
 }
 
-.im-pricing-calculator .pricing-scale__item.is-selected {
-  background: #3e3a7b;
-  box-shadow: inset 0 1px 3px rgba(#000, 0.2);
-}
-.im-pricing-calculator .pricing-scale__item.is-selected .pricing-scale__item-title {
-  color: #FED500;
-}
-
-.im-pricing-calculator .pricing-scale__item:first-child:after {
-  display: none;
-}
-
-.im-pricing-calculator .pricing-scale__item-title {
+.default-discount {
+  border-radius: 2px;
   color: #fff;
-  display: block;
-  font-size: 18px;
-  font-weight: 300;
-  line-height: 21px;
+  background-color: #ff0025;
+  margin: 10px -30px 0;
+  padding: 5px 30px;
+
 }
 
-.im-pricing-calculator .pricing-scale__item input {
-  left: -9999px;
-  position: absolute;
-  top: -9999px;
-}
-
-.im-pricing-calculator .form__actions {
-  background: none;
-  margin-top: 0;
-}
-
-/* Select box */
-.im-pricing-calculator .select select {
-  background: #3e3a7b;
-  border: 1px solid #322C64;
-  box-shadow: none;
-  color: #fff;
-}
-
-.pointerevents .im-pricing-calculator .select:before {
-  content: "";
-  display: block;
-  background: darken($purple-light, 5);
-}
-
-.pointerevents .im-pricing-calculator .select:after {
-  content: "";
-  display: block;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-color: transparent;
-  border-width: 7px 6.5px 0 6.5px;
-  border-top-color: white;
-}
-
-
-.im-pricing-calculator .pricing-scale > label,
-.im-pricing-calculator .pricing-frequency > label {
-  margin-bottom: 5px;
-}
-
-.im-pricing-calculator .btn--primary {
-  border: 1px solid #322C64;
-}
-
-/* IE8 */
-.no-csstransforms .im-pricing-calculator .btn--primary {
-  border: 1px solid #7d610f;
-  border-bottom: 4px solid #7d610f;
+.discount-icon {
+  float: right;
+  top: 11px;
 }
